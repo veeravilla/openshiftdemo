@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +25,6 @@ public class StudentController {
 	@Autowired
 	private StudentRepository studentRepository;
 	
-	@Autowired
-	private JmsTemplate jmsTemplate;
-
 	// Get All Students
 	@GetMapping("/students")
 	public List<Student> getAllStudents() {
@@ -38,10 +34,6 @@ public class StudentController {
 	// Create a new Student
 	@PostMapping("/student")
 	public Student addStudent(@Valid @RequestBody Student student) {
-		
-		//Student Msg
-		jmsTemplate.convertAndSend("demo.requestq", student);
-
 		return studentRepository.save(student);
 	}
 
