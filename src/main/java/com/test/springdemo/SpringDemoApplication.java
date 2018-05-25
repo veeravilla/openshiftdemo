@@ -15,7 +15,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @Configuration
 @EnableSwagger2
-@EnableJms
 public class SpringDemoApplication {
 
 	public static void main(String[] args) {
